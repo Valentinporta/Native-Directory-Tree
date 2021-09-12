@@ -2,15 +2,15 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Foundation } from '@expo/vector-icons'; 
 
-const CustomButton = ({ type }) => {
+const CustomButton = ({ type, onPress }) => {
 
     return type === 'submit'
         ?
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onPress}>
             <Text style={styles.submit}>Submit</Text>
         </TouchableOpacity>
         :
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onPress}>
             <Foundation style={styles.refresh} name="refresh" size={17} color="green" />
         </TouchableOpacity>
 };
