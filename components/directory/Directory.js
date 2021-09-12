@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
+import Collapsible from '../collapsible/Collapsible';
 
 const Directory = ({ name, children}) => {
     const [isOpen, setIsOpen] = useState(false)
@@ -14,7 +15,7 @@ const Directory = ({ name, children}) => {
             <TouchableOpacity style={styles.directory} onPress={handleOpen} >
                 <AntDesign name={isOpen ? 'folderopen' : 'folder1'} size={24} color="black" />
                 <Text style={{marginLeft: 5}}>{name}</Text>
-                {/* collapsible component with children prop */}
+                <Collapsible isOpen={isOpen}>{children}</Collapsible>
             </TouchableOpacity>
         </View>
     )
