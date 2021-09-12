@@ -7,6 +7,7 @@ const Tree = ({ children }) => {
 
 const styles = StyleSheet.create({
     tree: {
+        marginTop: 10,
         paddingLeft: 20
     }
 })
