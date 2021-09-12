@@ -1,95 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
 import CustomButton from './components/customButton/CustomButton';
 import RecursiveTree from './components/recursiveTree/RecursiveTree';
 import Tree from './components/tree/Tree';
-
-const data = [
-  {
-    "type": "directory",
-    "name": "JARqrzM",
-    "files": [
-      {
-        "type": "directory",
-        "name": "3BmXB",
-        "files": [
-          {
-            "type": "directory",
-            "name": "WZdo3TG6A",
-            "files": [
-              
-            ]
-          },
-          {
-            "type": "file",
-            "name": "QcNX0tqh.eCW"
-          },
-          {
-            "type": "file",
-            "name": "W3zFbYBrIV.QMA"
-          }
-        ]
-      },
-      {
-        "type": "directory",
-        "name": "W0ViZx5cJr",
-        "files": [
-          {
-            "type": "directory",
-            "name": "LrN1Fbxpfh",
-            "files": [
-              
-            ]
-          },
-          {
-            "type": "directory",
-            "name": "gKao1",
-            "files": [
-              
-            ]
-          },
-          {
-            "type": "file",
-            "name": "SslGTIi.JO3"
-          }
-        ]
-      },
-      {
-        "type": "file",
-        "name": "URTpta.p8T"
-      }
-    ]
-  },
-  {
-    "type": "directory",
-    "name": "RM7yqbChd",
-    "files": [
-      {
-        "type": "file",
-        "name": "UfDuec.h8I"
-      },
-      {
-        "type": "file",
-        "name": "phn5dTNjx.vwJ"
-      },
-      {
-        "type": "file",
-        "name": "ZzgYzTi2.7hc"
-      }
-    ]
-  }
-]
+import axios from 'axios';
 
 export default function App() {
+  const [apiData, setApiData] = useState([])
+  const [input, setInput] = useState('')
+
+  const handleRequest = async () => {
+      const request = await axios.get(input)
+      setApiData(request.data)
+  }
+
   return (
     <SafeAreaView style={styles.container}>
-      <TextInput style={styles.input} />
+      <TextInput style={styles.input} value={input} onChangeText={(input) => setInput(input)} />
       <View style={styles.buttons}>
-        <CustomButton type='submit' />
-        <CustomButton type='refresh' />
+        <CustomButton onPress={() => handleRequest()} type='submit' />
+        <CustomButton onPress={() => {setInput(''); setApiData([])}} type='refresh' />
       </View>
       <Tree>
-        <RecursiveTree data={data} />
+        <RecursiveTree data={apiData} />
       </Tree>
     </SafeAreaView>
   );
