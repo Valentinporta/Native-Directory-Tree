@@ -11,7 +11,7 @@ const CustomButton = ({ type, onPress }) => {
         </TouchableOpacity>
         :
         <TouchableOpacity onPress={onPress}>
-            <Foundation style={styles.refresh} name="refresh" size={17} color="green" />
+            <Foundation style={styles.refresh} name="refresh" size={28} color="green" />
         </TouchableOpacity>
 };
 
@@ -19,9 +19,13 @@ const styles = StyleSheet.create({
     submit: {
         width: 100,
         paddingHorizontal: 10,
+        paddingTop: 10,
+        fontSize: 18,
         borderWidth: 1,
         borderColor: '#bbb',
-        textAlign: 'center'
+        borderRadius: 5,
+        textAlign: 'center',
+        height: 40,
     },
     refresh: {
         width: 50,
